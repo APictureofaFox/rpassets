@@ -4,7 +4,6 @@ import java.util.Random;
 
 /**
  * grammar:
- * <p>
  * expression
  * -- lowPrecedence
  * -- expression '+' lowPrecedence
@@ -16,6 +15,7 @@ import java.util.Random;
  * highPrecedence
  * -- primary
  * -- primary 'd' primary
+ * -- 'd' primary
  * primary
  * -- number
  * -- '('expression')'
@@ -83,17 +83,30 @@ class RollParser {
     }
 
     private int highPrecedence() throws Exception {
-        int left = primary();
-        if (tokens.notEmpty()) {
-            Token t = tokens.getToken();
-            if (t.type != TokenType.DICE) {
+        if (!tokens.notEmpty()) return 0;
+        Token t = tokens.getToken();
+
+        switch (t.type) {
+            case DICE:
+                if (tokens.notEmpty()) {
+                    return xdy(1, primary());
+                } else {
+                    throw new Exception("expected primary after 'd'");
+                }
+            default:
                 tokens.putBack(t);
+                int left = primary();
+                if (tokens.notEmpty()) {
+                    t = tokens.getToken();
+                    if (t.type != TokenType.DICE) {
+                        tokens.putBack(t);
+                        return left;
+                    }
+                    int right = primary();
+                    return xdy(left, right);
+                }
                 return left;
-            }
-            int right = primary();
-            return xdy(left, right);
         }
-        return left;
     }
 
     private int primary() throws Exception {

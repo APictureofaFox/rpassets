@@ -6,9 +6,7 @@ import rpassets.core.roll.Roll;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cypher implements AssetEntity {
-    private String nameEn;
-    private String nameRu;
+public class Cypher extends AssetEntity {
     private Roll level;
     private boolean occultic;
     private List<String> useForms;
@@ -16,8 +14,7 @@ public class Cypher implements AssetEntity {
     private String source;
 
     public Cypher() {
-        this.nameEn = "";
-        this.nameRu = "";
+        super("new cypher", "новый шифр");
         this.level = new Roll("1d6");
         this.occultic = false;
         this.useForms = new ArrayList<>();
@@ -25,21 +22,6 @@ public class Cypher implements AssetEntity {
         this.source = "";
     }
 
-    public String getNameEn() {
-        return nameEn;
-    }
-
-    public void setNameEn(String nameEn) {
-        this.nameEn = nameEn;
-    }
-
-    public String getNameRu() {
-        return nameRu;
-    }
-
-    public void setNameRu(String nameRu) {
-        this.nameRu = nameRu;
-    }
 
     public Roll getLevel() {
         return level;

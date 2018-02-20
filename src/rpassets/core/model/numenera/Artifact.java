@@ -3,9 +3,7 @@ package rpassets.core.model.numenera;
 import rpassets.core.model.AssetEntity;
 import rpassets.core.roll.Roll;
 
-public class Artifact implements AssetEntity {
-    private String nameEn;
-    private String nameRu;
+public class Artifact extends AssetEntity {
     private Roll level;
     private String useForm;
     private String effect;
@@ -14,30 +12,13 @@ public class Artifact implements AssetEntity {
     private String source;
 
     public Artifact() {
-        this.nameEn = "";
-        this.nameRu = "";
+        super("new artifact", "новый артефакт");
         this.level = new Roll("1d6");
         this.useForm = "";
         this.effect = "";
         this.depletionRoll = new Roll("1d20");
         this.depletionFailure = 1;
         this.source = "";
-    }
-
-    public String getNameEn() {
-        return nameEn;
-    }
-
-    public void setNameEn(String nameEn) {
-        this.nameEn = nameEn;
-    }
-
-    public String getNameRu() {
-        return nameRu;
-    }
-
-    public void setNameRu(String nameRu) {
-        this.nameRu = nameRu;
     }
 
     public Roll getLevel() {

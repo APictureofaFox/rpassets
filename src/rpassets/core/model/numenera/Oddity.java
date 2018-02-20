@@ -2,10 +2,11 @@ package rpassets.core.model.numenera;
 
 import rpassets.core.model.AssetEntity;
 
-public class Oddity implements AssetEntity {
+public class Oddity extends AssetEntity {
     private String description;
 
     public Oddity(String description) {
+        super("new oddity", "новая диковинка");
         this.description = description;
     }
 

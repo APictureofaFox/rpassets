@@ -2,10 +2,8 @@ package rpassets.core.model;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +11,7 @@ public class ListModel<E extends AssetEntity> {
     private File file;
     private List<E> items;
 
-    public ListModel(String filepath) {
+    public ListModel(Class<E> clazz, String filepath) {
         this.file = new File(filepath);
         try {
             if (file.getParentFile() != null) {
@@ -26,16 +24,11 @@ public class ListModel<E extends AssetEntity> {
 
         try (Reader reader = new InputStreamReader(new FileInputStream(this.file), "UTF-8")) {
             Gson gson = new GsonBuilder().create();
-            Type listType = new TypeToken<ArrayList<E>>(){}.getType();
-            this.items = gson.fromJson(reader, listType);
-
+            this.items = gson.fromJson(reader, new ListOfJson<>(clazz));
+            if (this.items == null) this.items = new ArrayList<>();
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void addItem(E item) {
-        items.add(item);
     }
 
     public void saveFile() {
@@ -45,5 +38,9 @@ public class ListModel<E extends AssetEntity> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<E> items() {
+        return this.items;
     }
 }

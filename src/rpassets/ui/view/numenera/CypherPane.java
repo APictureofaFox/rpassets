@@ -51,7 +51,7 @@ public class CypherPane extends EntityPane<Cypher> {
 
         this.useFormsListView = new ListView<>();
         this.useFormsListView.setCellFactory(TextFieldListCell.forListView());
-        this.useFormsListView.setPrefHeight(100);
+        this.useFormsListView.setPrefHeight(levelField.getFont().getSize() * 6);
         this.addUseForm = new Button("+");
         this.addUseForm.setOnAction(event -> useFormsListView.getItems().add(""));
         this.removeUseForm = new Button("-");

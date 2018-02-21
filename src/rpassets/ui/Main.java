@@ -13,7 +13,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //Parent root = FXMLLoader.load(getClass().getResource("app.fxml"));
         primaryStage.setScene(new Scene(entityView.getRoot()));
 
         primaryStage.setTitle("RPAssets");

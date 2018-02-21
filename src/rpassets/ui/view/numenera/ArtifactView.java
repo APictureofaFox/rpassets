@@ -14,7 +14,17 @@ public class ArtifactView extends EntityView<Artifact> {
     }
 
     @Override
+    protected void initializeEntityPane() {
+        this.entityPane = new ArtifactPane();
+    }
+
+    @Override
     protected Class<Artifact> derivedClass() {
         return Artifact.class;
+    }
+
+    @Override
+    protected Artifact createEntity() {
+        return new Artifact();
     }
 }

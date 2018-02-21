@@ -43,6 +43,10 @@ public class Cypher extends AssetEntity {
         return useForms;
     }
 
+    public void setUseForms(List<String> useForms) {
+        this.useForms = useForms;
+    }
+
     public void addUseForm(String useForm) {
         this.useForms.add(useForm);
     }

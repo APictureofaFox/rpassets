@@ -40,7 +40,7 @@ public class ListModel<E extends AssetEntity> {
         }
     }
 
-    public List<E> items() {
+    public List<E> getItems() {
         return this.items;
     }
 }

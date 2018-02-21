@@ -10,11 +10,21 @@ public class OddityView extends EntityView<Oddity> {
     }
 
     public OddityView() {
-        super(config.get(JsonPathsConfig.Key.NUMENERA_ODDITY, "data/numenera/oddities.json"));
+        this(config.get(JsonPathsConfig.Key.NUMENERA_ODDITY, "data/numenera/oddities.json"));
+    }
+
+    @Override
+    protected void initializeEntityPane() {
+        this.entityPane = new OddityPane();
     }
 
     @Override
     protected Class<Oddity> derivedClass() {
         return Oddity.class;
+    }
+
+    @Override
+    protected Oddity createEntity() {
+        return new Oddity();
     }
 }

@@ -4,6 +4,7 @@ public abstract class AssetEntity {
     private String nameEn;
     private String nameRu;
 
+
     public AssetEntity(String nameEn, String nameRu) {
         this.nameEn = nameEn;
         this.nameRu = nameRu;

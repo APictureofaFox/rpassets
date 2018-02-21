@@ -10,11 +10,21 @@ public class CypherView extends EntityView<Cypher> {
     }
 
     public CypherView() {
-        super(config.get(JsonPathsConfig.Key.NUMENERA_CYPHER, "data/numenera/cyphers.json"));
+        this(config.get(JsonPathsConfig.Key.NUMENERA_CYPHER, "data/numenera/cyphers.json"));
+    }
+
+    @Override
+    protected void initializeEntityPane() {
+        this.entityPane = new CypherPane();
     }
 
     @Override
     protected Class<Cypher> derivedClass() {
         return Cypher.class;
+    }
+
+    @Override
+    protected Cypher createEntity() {
+        return new Cypher();
     }
 }

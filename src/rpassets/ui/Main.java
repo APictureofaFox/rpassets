@@ -13,7 +13,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setScene(new Scene(entityView.getRoot()));
+        Scene scene = new Scene(entityView.getRoot());
+        scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Roboto");
+        scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
+        primaryStage.setScene(scene);
 
         primaryStage.setTitle("RPAssets");
         primaryStage.show();

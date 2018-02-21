@@ -93,7 +93,7 @@ public class CypherPane extends EntityPane<Cypher> {
         nameRuField.setText("");
         levelField.setText("");
         occulticCheckBox.setSelected(false);
-        useFormsListView.getChildrenUnmodifiable().clear();
+        useFormsListView.getItems().clear();
         effectArea.setText("");
         sourceField.setText("");
     }

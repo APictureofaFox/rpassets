@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListModel<E extends AssetEntity> {
-    private File file;
+    private final File file;
     private List<E> items;
 
     public ListModel(Class<E> clazz, String filepath) {

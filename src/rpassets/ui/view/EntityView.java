@@ -13,27 +13,22 @@ public abstract class EntityView<E extends AssetEntity> {
     protected EntityPane<E> entityPane;
 
     private BorderPane root;
-    private SplitPane center;
     private Pane listBox;
     private Pane topBar;
 
-    private Button addEntityButton;
-    private Button removeEntityButton;
-    private Button saveFileButton;
-
-    public EntityView(String filepath) {
+    protected EntityView(String filepath) {
         initializeListBox(filepath);
         initializeEntityPane();
 
-        this.center = new SplitPane(this.listBox, this.entityPane.getPane());
-        this.center.setDividerPositions(0.25);
+        SplitPane center = new SplitPane(this.listBox, this.entityPane.getPane());
+        center.setDividerPositions(0.25);
 
         initializeTopBar();
 
         this.root = new BorderPane();
         this.root.setPrefSize(900, 600);
         this.root.setLeft(this.listBox);
-        this.root.setCenter(this.center);
+        this.root.setCenter(center);
         this.root.setTop(this.topBar);
     }
 
@@ -52,15 +47,15 @@ public abstract class EntityView<E extends AssetEntity> {
     }
 
     private void initializeTopBar() {
-        this.addEntityButton = new Button("add");
-        this.addEntityButton.setOnAction(event -> {
+        Button addEntityButton = new Button("add");
+        addEntityButton.setOnAction(event -> {
             E entity = createEntity();
             listModel.getItems().add(entity);
             listView.getItems().add(entity);
         });
 
-        this.removeEntityButton = new Button("delete");
-        this.removeEntityButton.setOnAction(event -> {
+        Button removeEntityButton = new Button("delete");
+        removeEntityButton.setOnAction(event -> {
             E entity = listView.getSelectionModel().getSelectedItem();
             if (entity != null) {
                 listModel.getItems().remove(entity);
@@ -68,13 +63,13 @@ public abstract class EntityView<E extends AssetEntity> {
             }
         });
 
-        this.saveFileButton = new Button("save file");
-        this.saveFileButton.setOnAction(event -> listModel.saveFile());
+        Button saveFileButton = new Button("save file");
+        saveFileButton.setOnAction(event -> listModel.saveFile());
 
         this.topBar = new HBox(
-                this.addEntityButton,
-                this.removeEntityButton,
-                this.saveFileButton
+                addEntityButton,
+                removeEntityButton,
+                saveFileButton
         );
     }
 

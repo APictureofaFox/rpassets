@@ -6,14 +6,14 @@ import java.io.IOException;
 import java.util.Properties;
 
 public enum JsonPathsConfig implements Config {
-    INSTANCE("paths.properties");
+    INSTANCE;
 
     private final Properties config;
 
-    JsonPathsConfig(String path) {
+    JsonPathsConfig() {
         config = new Properties();
         try {
-            config.load(this.getClass().getResourceAsStream(path));
+            config.load(this.getClass().getResourceAsStream("paths.properties"));
         } catch (IOException | NullPointerException e) {
             throw new ExceptionInInitializerError(e);
         }

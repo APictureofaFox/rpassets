@@ -10,18 +10,14 @@ import rpassets.core.model.AssetEntity;
 public abstract class EntityPane<E extends AssetEntity> {
     protected E item;
     private VBox root;
-    private Pane content;
-    private HBox bottom;
 
     private Button editButton;
     private Button cancelButton;
     private Button applyButton;
 
-    public EntityPane() {
+    protected EntityPane() {
         this.editButton = new Button("edit");
-        this.editButton.setOnAction(event -> {
-            setEditable(true);
-        });
+        this.editButton.setOnAction(event -> setEditable(true));
 
         this.cancelButton = new Button("cancel");
         this.cancelButton.setOnAction(event -> {
@@ -39,19 +35,19 @@ public abstract class EntityPane<E extends AssetEntity> {
         Pane separator = new Pane();
         HBox.setHgrow(separator, Priority.ALWAYS);
 
-        this.bottom = new HBox(
+        HBox bottom = new HBox(
                 this.editButton,
                 separator,
                 this.cancelButton,
                 this.applyButton
         );
 
-        this.content = initializeContent();
-        VBox.setVgrow(this.content, Priority.ALWAYS);
+        Pane content = initializeContent();
+        VBox.setVgrow(content, Priority.ALWAYS);
 
         this.root = new VBox(
-                this.content,
-                this.bottom
+                content,
+                bottom
         );
 
         setEditable(false);

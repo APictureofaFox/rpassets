@@ -57,10 +57,8 @@ public abstract class EntityView<E extends AssetEntity> {
         Button removeEntityButton = new Button("delete");
         removeEntityButton.setOnAction(event -> {
             E entity = listView.getSelectionModel().getSelectedItem();
-            if (entity != null) {
-                listModel.getItems().remove(entity);
-                listView.getItems().remove(entity);
-            }
+            listModel.getItems().remove(entity);
+            listView.getItems().remove(entity);
         });
 
         Button saveFileButton = new Button("save file");
